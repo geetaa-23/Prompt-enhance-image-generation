@@ -1,12 +1,40 @@
 import { useState } from "react";
+import PromptCard from "./components/PromptCard";
 
 function App() {
+
   const [prompt, setPrompt] = useState("");
+
+  const demoPrompts = [
+    {
+      title: "Photorealistic",
+      prompt:
+        "A massive futuristic city at sunset with glowing neon lights, cinematic atmosphere, ultra realistic architecture, shot using a 35mm lens with dramatic lighting and high detail.",
+      reasoning:
+        "Added cinematic lighting, realistic textures, and camera lens details to improve realism and depth."
+    },
+
+    {
+      title: "Fantasy Style",
+      prompt:
+        "An enchanted futuristic kingdom floating in the clouds, magical neon waterfalls, dreamy lighting, fantasy concept art style, highly detailed environment.",
+      reasoning:
+        "Introduced fantasy elements and magical atmosphere to create a more imaginative visual output."
+    },
+
+    {
+      title: "Cyberpunk Style",
+      prompt:
+        "A dark cyberpunk metropolis during heavy rain, glowing holograms, moody atmosphere, low-angle camera shot, Blade Runner inspired aesthetic.",
+      reasoning:
+        "Added cyberpunk mood, weather effects, and cinematic references for stronger visual storytelling."
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-10">
-      
-      <div className="max-w-4xl mx-auto">
+
+      <div className="max-w-6xl mx-auto">
 
         <h1 className="text-5xl font-bold text-center mb-4">
           AI Prompt Enhancer 🚀
@@ -16,8 +44,8 @@ function App() {
           Transform simple prompts into cinematic AI image prompts
         </p>
 
-        <div className="bg-gray-900 p-6 rounded-2xl shadow-2xl">
-          
+        <div className="bg-gray-900 p-6 rounded-2xl shadow-2xl mb-10">
+
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
@@ -30,6 +58,19 @@ function App() {
           >
             Generate Enhanced Prompts
           </button>
+
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+
+          {demoPrompts.map((item, index) => (
+            <PromptCard
+              key={index}
+              title={item.title}
+              prompt={item.prompt}
+              reasoning={item.reasoning}
+            />
+          ))}
 
         </div>
 
